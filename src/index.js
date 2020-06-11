@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware} from "redux";
 import {createLogger} from "redux-logger";
+// For redux thunk - async actions (API calls)
+import thunkMiddleware from 'redux-thunk';
+import {rootReducer} from "./redux/rootReducer";
 import './index.css';
 import 'tachyons';
 import App from "./containers/App";
@@ -13,7 +16,7 @@ import * as serviceWorker from './serviceWorker';
 // Create middleware logger - passed into createStore as second param
 const logger = createLogger();
 // Create store and pass into Provider - this is normally the root reducer
-const store = createStore(searchRobots, applyMiddleware(logger));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
 // Wrap app in Provider to give it access to the store
 ReactDOM.render(

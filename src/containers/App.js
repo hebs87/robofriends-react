@@ -6,38 +6,43 @@ import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import ErrorBoundary from "../components/ErrorBoundary";
 import './App.css';
-// Import Redux action
-import {setSearchField} from "../redux/actions";
+// Import Redux actions
+import {setSearchField, requestRobots} from "../redux/actions";
 
 // Gets the whole state and return the piece of state that we're interested in (replaces searchField in App state
 const mapStateToProps = state => ({
-  // If we had root reducer, we would need to say state.searchRobots.searchField
-  searchField: state.searchField,
+  searchField: state.searchRobots.searchField,
+  robots: state.requestRobots.robots,
+  error: state.requestRobots.error,
+  isPending: state.requestRobots.isPending,
 });
 
 // Gets dispatch as a param, which allows us to dispatch the action
 const mapDispatchToProps = dispatch => ({
   // onSearchChange is the prop which gets the event target value (search text)
-  onSearchChange: event => dispatch(setSearchField(event.target.value))
+  onSearchChange: event => dispatch(setSearchField(event.target.value)),
+  onRequestRobots: () => dispatch(requestRobots())
 });
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      robots: [],
-      // No longer needed as redux is handling it
-      // searchField: '',
-      isLoading: true,
-    }
-  }
+  // No longer needed as redux is handling it
+  // constructor(props) {
+  //   super(props);
+  //
+  //   this.state = {
+  //     robots: [],
+  //     searchField: '',
+  //     isLoading: true,
+  //   }
+  // }
 
   componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users/')
-      .then(res => res.json())
-      .then(robots => this.setState({robots, isLoading: false}))
-      .catch(error => console.log(error));
+    this.props.onRequestRobots();
+    // No longer needed as redux is handling it
+    // fetch('https://jsonplaceholder.typicode.com/users/')
+    //   .then(res => res.json())
+    //   .then(robots => this.setState({robots, isLoading: false}))
+    //   .catch(error => console.log(error));
   }
 
   // No longer needed as redux is handling it
@@ -47,8 +52,9 @@ class App extends Component {
   // }
 
   render() {
-    const {robots, isLoading} = this.state;
-    const {searchField, onSearchChange} = this.props;
+    // No longer needed as redux is handling it
+    // const {robots, isLoading} = this.state;
+    const {searchField, onSearchChange, robots, isPending} = this.props;
     const filteredRobots = robots.filter(robots => (
       robots.name.toLowerCase().includes(searchField.toLowerCase())
     ));
@@ -56,11 +62,11 @@ class App extends Component {
     return (
       <div className='tc'>
         {
-          isLoading &&
+          isPending &&
           <h1 className='f1'>Loading...</h1>
         }
         {
-          !isLoading &&
+          !isPending &&
           <Fragment>
             <h1 className='f1'>RoboFriends</h1>
             <SearchBox onSearchChange={onSearchChange}/>
