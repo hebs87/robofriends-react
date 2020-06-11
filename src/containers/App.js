@@ -1,9 +1,25 @@
 import React, {Component, Fragment} from "react";
+// Redux import
+import {connect} from 'react-redux';
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import ErrorBoundary from "../components/ErrorBoundary";
 import './App.css';
+// Import Redux action
+import {setSearchField} from "../redux/actions";
+
+// Gets the whole state and return the piece of state that we're interested in (replaces searchField in App state
+const mapStateToProps = state => ({
+  // If we had root reducer, we would need to say state.searchRobots.searchField
+  searchField: state.searchField,
+});
+
+// Gets dispatch as a param, which allows us to dispatch the action
+const mapDispatchToProps = dispatch => ({
+  // onSearchChange is the prop which gets the event target value (search text)
+  onSearchChange: event => dispatch(setSearchField(event.target.value))
+});
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +27,8 @@ class App extends Component {
 
     this.state = {
       robots: [],
-      searchField: '',
+      // No longer needed as redux is handling it
+      // searchField: '',
       isLoading: true,
     }
   }
@@ -23,13 +40,15 @@ class App extends Component {
       .catch(error => console.log(error));
   }
 
-  onSearchChange = event => {
-    let searchField = event.target.value;
-    this.setState({searchField});
-  }
+  // No longer needed as redux is handling it
+  // onSearchChange = event => {
+  //   let searchField = event.target.value;
+  //   this.setState({searchField});
+  // }
 
   render() {
-    const {robots, searchField, isLoading} = this.state;
+    const {robots, isLoading} = this.state;
+    const {searchField, onSearchChange} = this.props;
     const filteredRobots = robots.filter(robots => (
       robots.name.toLowerCase().includes(searchField.toLowerCase())
     ));
@@ -44,7 +63,7 @@ class App extends Component {
           !isLoading &&
           <Fragment>
             <h1 className='f1'>RoboFriends</h1>
-            <SearchBox onSearchChange={this.onSearchChange}/>
+            <SearchBox onSearchChange={onSearchChange}/>
             <Scroll>
               <ErrorBoundary>
                 <CardList robots={filteredRobots}/>
@@ -57,4 +76,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
