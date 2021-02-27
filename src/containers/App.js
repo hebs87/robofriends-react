@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import {Component} from "react";
 // Redux import
 import {connect} from 'react-redux';
 import CardList from "../components/CardList";
@@ -9,7 +9,7 @@ import './App.css';
 // Import Redux actions
 import {setSearchField, requestRobots} from "../redux/actions";
 
-// Gets the whole state and return the piece of state that we're interested in (replaces searchField in App state
+// Gets the whole state and return the piece of state that we're interested in (replaces searchField in App state)
 const mapStateToProps = state => ({
   searchField: state.searchRobots.searchField,
   robots: state.requestRobots.robots,
@@ -25,35 +25,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class App extends Component {
-  // No longer needed as redux is handling it
-  // constructor(props) {
-  //   super(props);
-  //
-  //   this.state = {
-  //     robots: [],
-  //     searchField: '',
-  //     isLoading: true,
-  //   }
-  // }
 
   componentDidMount() {
     this.props.onRequestRobots();
-    // No longer needed as redux is handling it
-    // fetch('https://jsonplaceholder.typicode.com/users/')
-    //   .then(res => res.json())
-    //   .then(robots => this.setState({robots, isLoading: false}))
-    //   .catch(error => console.log(error));
   }
 
-  // No longer needed as redux is handling it
-  // onSearchChange = event => {
-  //   let searchField = event.target.value;
-  //   this.setState({searchField});
-  // }
-
   render() {
-    // No longer needed as redux is handling it
-    // const {robots, isLoading} = this.state;
     const {searchField, onSearchChange, robots, isPending} = this.props;
     const filteredRobots = robots.filter(robots => (
       robots.name.toLowerCase().includes(searchField.toLowerCase())
@@ -67,7 +44,7 @@ class App extends Component {
         }
         {
           !isPending &&
-          <Fragment>
+          <>
             <h1 className='f1'>RoboFriends</h1>
             <SearchBox onSearchChange={onSearchChange}/>
             <Scroll>
@@ -75,7 +52,7 @@ class App extends Component {
                 <CardList robots={filteredRobots}/>
               </ErrorBoundary>
             </Scroll>
-          </Fragment>
+          </>
         }
       </div>
     )
