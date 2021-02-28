@@ -1,6 +1,7 @@
 import {Component} from "react";
 // Redux import
 import {connect} from 'react-redux';
+import Header from "../components/Header";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
@@ -45,7 +46,7 @@ class App extends Component {
         {
           !isPending &&
           <>
-            <h1 className='f1'>RoboFriends</h1>
+            <Header/>
             <SearchBox onSearchChange={onSearchChange}/>
             <Scroll>
               <ErrorBoundary>
