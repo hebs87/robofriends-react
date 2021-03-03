@@ -1,4 +1,4 @@
-import {Component} from "react";
+import React, {Component} from "react";
 // Redux import
 import {connect} from 'react-redux';
 import Header from "../components/Header";
