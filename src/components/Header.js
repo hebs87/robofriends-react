@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 
 class Header extends Component {
   // Determine when to render the header - only render once as it doesn't need to re-render
