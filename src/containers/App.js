@@ -1,11 +1,11 @@
 import {Component} from "react";
 // Redux import
 import {connect} from 'react-redux';
-import Header from "../components/Header";
-import CardList from "../components/CardList";
-import SearchBox from "../components/SearchBox";
-import Scroll from "../components/Scroll";
-import ErrorBoundary from "../components/ErrorBoundary";
+import Header from "../components/Header/Header";
+import CardList from "../components/CardList/CardList";
+import SearchBox from "../components/SearchBar/SearchBox";
+import Scroll from "../components/Scroll/Scroll";
+import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import './App.css';
 // Import Redux actions
 import {setSearchField, requestRobots} from "../redux/actions";
