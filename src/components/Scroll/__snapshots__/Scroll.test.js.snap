@@ -9,5 +9,7 @@ exports[`Scroll component test suite expect to render Scroll component 1`] = `
       "overflowY": "scroll",
     }
   }
-/>
+>
+  <Component />
+</div>
 `;

@@ -6,11 +6,15 @@ exports[`Card component test suite expect to render Card component 1`] = `
 >
   <img
     alt="Robots"
-    src="https://robohash.org/undefined?size=200x200"
+    src="https://robohash.org/1?size=200x200"
   />
   <div>
-    <h2 />
-    <p />
+    <h2>
+      John Snow
+    </h2>
+    <p>
+      john@gmail.com
+    </p>
   </div>
 </div>
 `;
