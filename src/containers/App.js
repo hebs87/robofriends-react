@@ -3,7 +3,7 @@ import {Component} from "react";
 import {connect} from 'react-redux';
 import Header from "../components/Header/Header";
 import CardList from "../components/CardList/CardList";
-import SearchBox from "../components/SearchBar/SearchBox";
+import SearchBox from "../components/SearchBox/SearchBox";
 import Scroll from "../components/Scroll/Scroll";
 import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import './App.css';
