@@ -19,6 +19,7 @@ class CounterButton extends Component {
 
     return (
       <button
+        id="counter"
         color={color}
         onClick={() => {this.setState(state => ({count: state.count + 1}))}}
       >
