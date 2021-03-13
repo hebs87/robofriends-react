@@ -12,11 +12,14 @@ class MainPage extends Component {
     this.props.onRequestRobots();
   }
 
-  render() {
-    const {searchField, onSearchChange, robots, isPending} = this.props;
-    const filteredRobots = robots.filter(robots => (
-      robots.name.toLowerCase().includes(searchField.toLowerCase())
+  filteredRobots = robots => {
+    return robots.filter(robots => (
+      robots.name.toLowerCase().includes(this.props.searchField.toLowerCase())
     ));
+  };
+
+  render() {
+    const {onSearchChange, robots, isPending} = this.props;
 
     return (
       <div className='tc'>
@@ -31,7 +34,7 @@ class MainPage extends Component {
             <SearchBox onSearchChange={onSearchChange}/>
             <Scroll>
               <ErrorBoundary>
-                <CardList robots={filteredRobots}/>
+                <CardList robots={this.filteredRobots(robots)}/>
               </ErrorBoundary>
             </Scroll>
           </>
