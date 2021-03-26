@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Scroll component test suite expect to render Scroll component 1`] = `
+<div
+  style={
+    Object {
+      "border": "1px solid black",
+      "height": 700,
+      "overflowY": "scroll",
+    }
+  }
+>
+  <Component />
+</div>
+`;
