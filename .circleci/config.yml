@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:14.11.0 # the primary container, where your job's commands are run
+      - image: circleci/node:10 # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
       - run: echo "npm installing" # run the `echo` command
@@ -11,7 +11,7 @@ jobs:
       - run: npm run build # run the `npm run build` command
   test:
     docker:
-      - image: circleci/node:14.11.0 # the primary container, where your job's commands are run
+      - image: circleci/node:10 # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
       - run: echo "testing" # run the `echo` command
@@ -19,7 +19,7 @@ jobs:
       - run: npm test # run the `npm test` command
   hithere:
     docker:
-      - image: circleci/node:14.11.0 # the primary container, where your job's commands are run
+      - image: circleci/node:10 # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
       - run: echo "hellooooo!" # run the `echo` command
