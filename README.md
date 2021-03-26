@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/hebs87/robofriends-react.svg?style=svg)](https://app.circleci.com/pipelines/github/hebs87/robofriends-react)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
