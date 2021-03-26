@@ -10,7 +10,6 @@ import {rootReducer} from "./redux/rootReducer";
 import './index.css';
 import 'tachyons';
 import App from "./containers/App";
-import {searchRobots} from "./redux/reducers";
 import * as serviceWorker from './serviceWorker';
 
 // Create middleware logger - passed into createStore as second param
